@@ -1,14 +1,17 @@
-package com.cydeo.tests.utilities;
+package com.cydeo.utilities;
 
 /*
 In this class only general utility methods that are NOT related to some specific page.
  */
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
-import org.testng.*;
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.*;
+
+import java.util.Set;
 
 public class BrowserUtils {
 
@@ -32,32 +35,32 @@ public class BrowserUtils {
         - If condition matches, will break loop.
     Arg3: expectedInTitle to be compared against actualTitle
      */
-    public static void switchWindowAndVerify(WebDriver driver, String expectedInUrl, String expectedInTitle){
+    public static void switchWindowAndVerify(String expectedInUrl, String expectedInTitle){
 
-        Set<String> allWindowsHandles = driver.getWindowHandles();
+        Set<String> allWindowsHandles = Driver.getDriver().getWindowHandles();
 
         for (String each : allWindowsHandles) {
 
-            driver.switchTo().window(each);
+            Driver.getDriver().switchTo().window(each);
 
-            System.out.println("Current URL: " + driver.getCurrentUrl());
+            System.out.println("Current URL: " + Driver.getDriver().getCurrentUrl());
 
-            if (driver.getCurrentUrl().contains(expectedInUrl)){
+            if (Driver.getDriver().getCurrentUrl().contains(expectedInUrl)){
                 break;
             }
         }
 
         //5. Assert:Title contains “expectedInTitle”
-        String actualTitle = driver.getTitle();
+        String actualTitle = Driver.getDriver().getTitle();
         Assert.assertTrue(actualTitle.contains(expectedInTitle));
     }
 
     /*
     This method accepts a String "expectedTitle" and Asserts if it is true
      */
-    public static void verifyTitle(WebDriver driver ,String expectedTitle){
+    public static void verifyTitle(String expectedTitle){
 
-        Assert.assertEquals(driver.getTitle(), expectedTitle);
+        Assert.assertEquals(Driver.getDriver().getTitle(), expectedTitle);
 
     }
 

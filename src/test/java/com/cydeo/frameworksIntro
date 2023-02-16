@@ -1,0 +1,4 @@
+DDT - Data Driven Testing
+this is for testing which should be run with different data from outside the code
+this can be implemented with configuration reader, xml files, excel sheets, SQL etc!!
+SAME CODE - DIFFERENT DATA

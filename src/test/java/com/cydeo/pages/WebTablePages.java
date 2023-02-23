@@ -5,21 +5,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class GooglePages {
+public class WebTablePages {
 
-    public GooglePages() {
+    public WebTablePages() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
-    @FindBy(name = "q")
-    public WebElement searchBox;
+    @FindBy(name = "username")
+    public WebElement username;
 
-    @FindBy(xpath = "//h3")
-    public WebElement firstJavaResult;
+    @FindBy(name = "password")
+    public WebElement password;
 
-    @FindBy(xpath = "//*")
-    public WebElement allTextResults;
-
+    @FindBy(xpath = "//*[.='Login']")
+    public WebElement loginButton;
 
 
 }

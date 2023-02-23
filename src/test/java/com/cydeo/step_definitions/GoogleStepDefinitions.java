@@ -3,6 +3,7 @@ package com.cydeo.step_definitions;
 import com.cydeo.pages.GooglePages;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -11,7 +12,7 @@ import org.openqa.selenium.Keys;
 public class GoogleStepDefinitions {
 
 GooglePages pages = new GooglePages();
-    @When("user is on Google page")
+    @Given("user is on Google page")
     public void user_is_on_google_page() {
         Driver.getDriver().get("https://www.google.com/");
     }
@@ -21,23 +22,19 @@ GooglePages pages = new GooglePages();
 
     }
 
-    @When("user should be able to type anything in the searchbox")
-    public void userShouldBeAbleToTypeAnythingInTheSearchbox() {
-        pages.searchBox.sendKeys("Java");
-    }
-
     @And("user should be able to press enter")
     public void userShouldBeAbleToPressEnter() {
         pages.searchBox.sendKeys(Keys.ENTER);
     }
 
-    @And("user should see results of search key")
-    public void userShouldSeeResultsOfSearchKey() {
-        Assert.assertTrue(Driver.getDriver().getTitle().contains("Java"));
+    @When("user should be able to type {string} in the searchbox")
+    public void userShouldBeAbleToTypeInTheSearchbox(String string) {
+        pages.searchBox.sendKeys(string);
     }
 
-    @Then("user should be able to click first result")
-    public void userShouldBeAbleToClickFirstResult() {
-        pages.firstJavaResult.click();
+    @Then("user should be able to see {string} is in the google title")
+    public void userShouldBeAbleToSeeIsInTheGoogleTitle(String string) {
+        Assert.assertTrue(pages.allTextResults.getText().contains(string));
+        System.out.println(pages.allTextResults.getText());
     }
 }

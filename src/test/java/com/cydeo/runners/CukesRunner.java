@@ -6,11 +6,14 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = "html:target/cucumberReport.html",
-        features = "src/test/resources/features",
-        glue = "com/cydeo/step_definitions",
-        dryRun = false,
-        tags = "@Library"
+        plugin = {"html:target/cucumberReport.html",  // this is for html report
+                "rerun:target/rerun.txt",
+                "me.jvt.cucumber.report.PrettyReports:target/cucumber"
+        },
+        features = "src/test/resources/features",   // this is for feature files
+        glue = "com/cydeo/step_definitions",  // this is for step definitions, implementations of feature files!
+        dryRun = false,   // this is just for checking the feature files implement or not!
+        tags = ""   // "or" "and" "and not"
 )
 public class CukesRunner {
 }

@@ -1,5 +1,6 @@
 package com.cydeo.step_definitions;
 
+import com.cydeo.pages.TableBasePage;
 import com.cydeo.pages.WebTablePages;
 import com.cydeo.utilities.ConfigurationReader;
 import com.cydeo.utilities.Driver;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class WebTable_StepDefinitions {
 
     WebTablePages locators = new WebTablePages();
+    TableBasePage basePage = new TableBasePage();
 
     @Given("User is on the home page")
     public void user_is_on_the_home_page() {
@@ -37,16 +39,16 @@ public class WebTable_StepDefinitions {
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().endsWith(arg0));
     }
 
-    @Given("user is already logged in to web table app")
-    public void userIsAlreadyLoggedInToWebTableApp() {
+    @When("user should click the order button")
+    public void userShouldClickTheOrderButton() {
+        basePage.orderButton.click();
     }
 
-    @When("user is on the Order page")
-    public void userIsOnTheOrderPage() {
-    }
+    @When("user enters appropriate test data {string} {string} {string} {string} {string} {string} {string} {string} {string} {string} {string}")
+    public void userEntersAppropriateTestData(String Product, String Quantity, String CustomerName, String Street, String City, String State, String Zip, String arg8, String arg9, String arg10) {
 
-    @Then("user enters appropriate test data {string} {string} {string} {string} {string} {string} {string} {string} {string} {string} {string}")
-    public void userEntersAppropriateTestData(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8, String arg9, String arg10) {
+
+
     }
 
     @And("user clicks to Process Order")
@@ -56,4 +58,5 @@ public class WebTable_StepDefinitions {
     @Then("user should see new order in the table on View all orders")
     public void userShouldSeeNewOrderInTheTableOnViewAllOrders() {
     }
+
 }

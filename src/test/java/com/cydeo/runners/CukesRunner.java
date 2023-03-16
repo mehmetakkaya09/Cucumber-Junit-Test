@@ -8,12 +8,13 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"html:target/cucumberReport.html",  // this is for html report
                 "rerun:target/rerun.txt",
-                "me.jvt.cucumber.report.PrettyReports:target/cucumber"
+                "me.jvt.cucumber.report.PrettyReports:target/cucumber",
+                "json:target/cucumber.json"
         },
         features = "src/test/resources/features",   // this is for feature files
         glue = "com/cydeo/step_definitions",  // this is for step definitions, implementations of feature files!
         dryRun = false,   // this is just for checking the feature files implement or not!
-        tags = "@wip"   // "or" "and" "and not"
+        tags = ""   // "or" "and" "and not"
 )
 public class CukesRunner {
 }
